@@ -2,6 +2,7 @@ const express = require('express');
 const expressLayouts = require("express-ejs-layouts");
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
+const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
 const app = express();
@@ -28,6 +29,9 @@ const db = require('./config/keys').mongoURI;
  mongoose.connect(db, { useNewUrlParser: true })
     .then(() => console.log('Mongo Connected'))
     .catch(err => console.log(err));
+
+    app.use(express.static(path.join(__dirname, 'public')));
+
 
 //ejs
 app.use(expressLayouts);
